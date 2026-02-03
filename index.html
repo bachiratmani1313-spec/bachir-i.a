@@ -318,7 +318,99 @@
             <!-- RESULTAT -->
             <div id="result-area" class="result-area">
                 <h3 style="color:var(--primary); margin-bottom:10px;">Succès !</h3>
-                <button class="btn-copy" onclick="copyCode()">
+                <but    let currentMode = 'app';
+    const terminal = document.getElementById('terminal');
+    const resultArea = document.getElementById('result-area');
+
+    function setMode(mode) {
+        currentMode = mode;
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        resultArea.style.display = 'none';
+        terminal.style.display = 'none';
+        terminal.innerHTML = '';
+    }
+
+    async function startRealGeneration() {
+        const apiKey = document.getElementById('api-key-input').value;
+        const projectName = document.getElementById('project-name').value;
+        const prompt = document.getElementById('prompt-input').value;
+
+        if (!apiKey) { showToast("Entrez votre clé API Google !"); return; }
+        if (!prompt) { showToast("Décrivez votre projet."); return; }
+        
+        const finalName = projectName || "MonProjet";
+
+        terminal.style.display = 'block';
+        terminal.style.color = 'var(--success)';
+        terminal.innerText = `> Connexion à Google AI (Flash)...\n> Projet : ${finalName}\n> Génération en cours...\n`;
+        resultArea.style.display = 'none';
+
+        try {
+            let systemPrompt = "";
+            if(currentMode === 'app') systemPrompt = `Tu es un expert dev. Crée le code complet pour une APP nommée "${finalName}".`;
+            else if(currentMode === 'site') systemPrompt = `Tu es un expert web. Crée le code HTML/CSS complet pour un SITE nommé "${finalName}".`;
+            else if(currentMode === 'video') systemPrompt = `Tu es un expert marketing. Crée un script viral pour une VIDÉO nommée "${finalName}".`;
+
+            const fullPrompt = systemPrompt + " Description : " + prompt;
+
+            // CORRECTION ICI : Utilisation de gemini-1.5-flash au lieu de gemini-pro
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: fullPrompt }] }]
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+                terminal.innerText = "ERREUR API : " + data.error.message;
+                terminal.style.color = "red";
+            } else {
+                const aiContent = data.candidates[0].content.parts[0].text;
+                terminal.innerText = "";
+                typeWriterEffect(aiContent);
+            }
+
+        } catch (error) {
+            terminal.innerText = "Erreur Réseau : " + error.message;
+            terminal.style.color = "red";
+        }
+    }
+
+    function typeWriterEffect(text) {
+        let i = 0;
+        const speed = 2;
+        function type() {
+            if (i < text.length) {
+                terminal.innerText += text.charAt(i);
+                terminal.scrollTop = terminal.scrollHeight;
+                i++;
+                setTimeout(type, speed);
+            } else {
+                resultArea.style.display = 'block';
+            }
+        }
+        type();
+    }
+
+    function copyCode() {
+        const text = terminal.innerText;
+        if(text && !text.includes("ERREUR")) {
+            navigator.clipboard.writeText(text).then(() => showToast("Code copié !"));
+        }
+    }
+
+    function closeModal() { document.getElementById('subscription-modal').classList.remove('active'); }
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.innerText = msg; t.style.display = 'block';
+        setTimeout(() => t.style.display = 'none', 3000);
+    }ton class="btn-copy" onclick="copyCode()">
                     <i class="fas fa-copy"></i> COPIER LE CODE
                 </button>
             </div>
@@ -336,99 +428,8 @@
     </div>
 
     <script>
-        let currentMode = 'app';
-        const terminal = document.getElementById('terminal');
-        const resultArea = document.getElementById('result-area');
-
-        function setMode(mode) {
-            currentMode = mode;
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            resultArea.style.display = 'none';
-            terminal.style.display = 'none';
-            terminal.innerHTML = '';
-        }
-
-        async function startRealGeneration() {
-            const apiKey = document.getElementById('api-key-input').value;
-            const projectName = document.getElementById('project-name').value;
-            const prompt = document.getElementById('prompt-input').value;
-
-            if (!apiKey) { showToast("Entrez votre clé API Google !"); return; }
-            if (!prompt) { showToast("Décrivez votre projet."); return; }
-            
-            const finalName = projectName || "MonProjet";
-
-            terminal.style.display = 'block';
-            terminal.style.color = 'var(--success)';
-            terminal.innerText = `> Connexion à Google Gemini...\n> Projet : ${finalName}\n> Analyse en cours...\n`;
-            resultArea.style.display = 'none';
-
-            try {
-                let systemPrompt = "";
-                if(currentMode === 'app') systemPrompt = `Tu es un expert dev. Crée le code complet pour une APP nommée "${finalName}".`;
-                else if(currentMode === 'site') systemPrompt = `Tu es un expert web. Crée le code HTML/CSS complet pour un SITE nommé "${finalName}".`;
-                else if(currentMode === 'video') systemPrompt = `Tu es un expert marketing. Crée un script viral pour une VIDÉO nommée "${finalName}".`;
-
-                const fullPrompt = systemPrompt + " Description : " + prompt;
-
-                // Appel API Google Gemini
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
-
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: fullPrompt }] }]
-                    })
-                });
-
-                const data = await response.json();
-
-                if (data.error) {
-                    terminal.innerText = "ERREUR : " + data.error.message;
-                    terminal.style.color = "red";
-                } else {
-                    const aiContent = data.candidates[0].content.parts[0].text;
-                    terminal.innerText = "";
-                    typeWriterEffect(aiContent);
-                }
-
-            } catch (error) {
-                terminal.innerText = "Erreur Réseau : " + error.message;
-                terminal.style.color = "red";
-            }
-        }
-
-        function typeWriterEffect(text) {
-            let i = 0;
-            const speed = 2;
-            function type() {
-                if (i < text.length) {
-                    terminal.innerText += text.charAt(i);
-                    terminal.scrollTop = terminal.scrollHeight;
-                    i++;
-                    setTimeout(type, speed);
-                } else {
-                    resultArea.style.display = 'block';
-                }
-            }
-            type();
-        }
-
-        function copyCode() {
-            const text = terminal.innerText;
-            if(text && !text.includes("ERREUR")) {
-                navigator.clipboard.writeText(text).then(() => showToast("Code copié !"));
-            }
-        }
-
-        function closeModal() { document.getElementById('subscription-modal').classList.remove('active'); }
-        function showToast(msg) {
-            const t = document.getElementById('toast');
-            t.innerText = msg; t.style.display = 'block';
-            setTimeout(() => t.style.display = 'none', 3000);
-        }
+        
     </script>
 </body>
 </html>
+
