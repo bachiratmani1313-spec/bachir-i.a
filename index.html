@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Bachir AI - Générateur Universel</title>
+    <title>Bachir AI - Générateur Complet</title>
     <!-- Import Icônes et Polices -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -73,7 +73,7 @@
             padding: 20px;
         }
 
-        /* Zone Configuration Clé Google */
+        /* Styles des champs */
         .api-config {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255,255,255,0.1);
@@ -100,170 +100,82 @@
             font-size: 0.9rem;
         }
 
-        /* Zone Nom du Projet */
-        .project-name-config {
-            margin-bottom: 20px;
-        }
+        .project-name-config { margin-bottom: 20px; }
         .project-name-config label {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--text-main);
-            font-family: 'Orbitron', sans-serif;
-            margin-bottom: 8px;
+            display: block; font-size: 0.8rem; color: var(--text-main);
+            font-family: 'Orbitron', sans-serif; margin-bottom: 8px;
         }
         .project-name-config input {
-            width: 100%;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            outline: none;
-            transition: border 0.3s;
-        }
-        .project-name-config input:focus {
-            border-color: var(--primary);
+            width: 100%; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2); color: white;
+            padding: 12px; border-radius: 8px; outline: none;
         }
 
         /* Onglets */
-        .creation-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
+        .creation-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
         .tab-btn {
-            flex: 1;
-            padding: 12px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #888;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.8rem;
+            flex: 1; padding: 12px; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); color: #888;
+            border-radius: 8px; cursor: pointer; transition: all 0.3s;
+            display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 0.8rem;
         }
         .tab-btn.active {
-            background: rgba(0, 242, 234, 0.1);
-            border-color: var(--primary);
-            color: var(--primary);
-            box-shadow: 0 0 15px rgba(0, 242, 234, 0.2);
+            background: rgba(0, 242, 234, 0.1); border-color: var(--primary);
+            color: var(--primary); box-shadow: 0 0 15px rgba(0, 242, 234, 0.2);
         }
 
-        /* Zone de saisie */
-        .input-group {
-            margin-bottom: 20px;
-        }
+        /* Bouton Principal */
+        .input-group { margin-bottom: 20px; }
         textarea {
-            width: 100%;
-            height: 100px;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            resize: none;
-            font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
+            width: 100%; height: 100px; background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1); color: white;
+            padding: 15px; border-radius: 8px; resize: none;
         }
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
         .action-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(90deg, var(--primary), #00a8a3);
-            border: none;
-            color: #000;
-            font-weight: bold;
-            font-family: 'Orbitron', sans-serif;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: transform 0.2s;
+            width: 100%; padding: 15px; background: linear-gradient(90deg, var(--primary), #00a8a3);
+            border: none; color: #000; font-weight: bold;
+            font-family: 'Orbitron', sans-serif; border-radius: 8px;
+            cursor: pointer; font-size: 1rem; text-transform: uppercase;
             box-shadow: 0 4px 20px rgba(0, 242, 234, 0.3);
         }
-        .action-btn:active {
-            transform: scale(0.98);
-        }
+        .action-btn:active { transform: scale(0.98); }
 
-        /* Terminal */
+        /* Terminal & Résultat */
         .terminal-window {
-            background: #000;
-            border: 1px solid #333;
-            border-radius: 6px;
-            padding: 15px;
-            height: 250px;
-            overflow-y: auto;
-            font-family: 'Courier New', monospace;
-            font-size: 0.8rem;
-            color: var(--success);
-            margin-top: 20px;
-            display: none;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+            background: #000; border: 1px solid #333; border-radius: 6px;
+            padding: 15px; height: 250px; overflow-y: auto;
+            font-family: 'Courier New', monospace; font-size: 0.8rem;
+            color: var(--success); margin-top: 20px; display: none;
+            white-space: pre-wrap; word-wrap: break-word;
         }
-
-        /* Résultat */
-        .result-area {
-            display: none;
-            text-align: center;
-            margin-top: 20px;
-        }
+        .result-area { display: none; text-align: center; margin-top: 20px; }
         .btn-copy {
-            background: var(--text-main);
-            color: #000;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+            background: var(--text-main); color: #000; border: none;
+            padding: 12px 24px; border-radius: 50px; font-weight: bold;
+            cursor: pointer; margin-top: 10px; display: inline-flex; align-items: center; gap: 10px;
         }
 
-        /* Modal */
+        /* Modal & Toast */
         .modal-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); display: flex;
+            justify-content: center; align-items: center; z-index: 100;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s;
         }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
         .modal-content {
             background: #1a1c24; width: 85%; padding: 25px;
-            border-radius: 12px; text-align: center;
-            border: 1px solid var(--primary);
+            border-radius: 12px; text-align: center; border: 1px solid var(--primary);
         }
         .pay-btn {
             width: 100%; background: var(--success); color: #000;
             border: none; padding: 12px; border-radius: 8px;
             font-weight: bold; margin-top: 15px; cursor: pointer;
         }
-
-        /* Toast */
         .toast {
-            position: absolute; top: 20px; left: 50%;
-            transform: translateX(-50%);
+            position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
             background: #333; color: white; padding: 10px 20px;
-            border-radius: 30px; font-size: 0.9rem; z-index: 200;
-            display: none;
+            border-radius: 30px; font-size: 0.9rem; z-index: 200; display: none;
         }
     </style>
 </head>
@@ -274,20 +186,20 @@
 
         <header>
             <div class="logo"><i class="fas fa-brain"></i> BACHIR AI</div>
-            <div style="font-size:0.8rem; color:var(--success);"><i class="fas fa-wifi"></i> CONNECTÉ</div>
+            <div style="font-size:0.8rem; color:var(--success);"><i class="fas fa-wifi"></i> ONLINE</div>
         </header>
 
         <main>
             <!-- CONFIGURATION CLE GOOGLE -->
             <div class="api-config">
                 <label><i class="fas fa-key"></i> CLÉ API GOOGLE (AIza...) :</label>
-                <input type="password" id="api-key-input" placeholder="Collez votre clé Google Gemini ici">
+                <input type="password" id="api-key-input" placeholder="Collez votre clé Gemini ici">
             </div>
 
             <!-- NOM DU PROJET -->
             <div class="project-name-config">
                 <label><i class="fas fa-signature"></i> NOM DU PROJET :</label>
-                <input type="text" id="project-name" placeholder="Ex: MonSuperApp, VideoViral...">
+                <input type="text" id="project-name" placeholder="Ex: MonSuperApp...">
             </div>
 
             <!-- ONGLETS -->
@@ -305,9 +217,10 @@
 
             <!-- SAISIE -->
             <div class="input-group">
-                <textarea id="prompt-input" placeholder="Décrivez ce que doit faire votre projet..."></textarea>
+                <textarea id="prompt-input" placeholder="Décrivez votre projet ici..."></textarea>
             </div>
 
+            <!-- BOUTON GENERER -->
             <button class="action-btn" onclick="startRealGeneration()">
                 <i class="fas fa-bolt"></i> GÉNÉRER (GOOGLE AI)
             </button>
@@ -315,121 +228,151 @@
             <!-- TERMINAL -->
             <div id="terminal" class="terminal-window"></div>
 
-            <!-- RESULTAT -->
+            <!-- ZONE COPIE -->
             <div id="result-area" class="result-area">
-                <h3 style="color:var(--primary); margin-bottom:10px;">Succès !</h3>
-                <but    let currentMode = 'app';
-    const terminal = document.getElementById('terminal');
-    const resultArea = document.getElementById('result-area');
-
-    function setMode(mode) {
-        currentMode = mode;
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-        resultArea.style.display = 'none';
-        terminal.style.display = 'none';
-        terminal.innerHTML = '';
-    }
-
-    async function startRealGeneration() {
-        const apiKey = document.getElementById('api-key-input').value;
-        const projectName = document.getElementById('project-name').value;
-        const prompt = document.getElementById('prompt-input').value;
-
-        if (!apiKey) { showToast("Entrez votre clé API Google !"); return; }
-        if (!prompt) { showToast("Décrivez votre projet."); return; }
-        
-        const finalName = projectName || "MonProjet";
-
-        terminal.style.display = 'block';
-        terminal.style.color = 'var(--success)';
-        terminal.innerText = `> Connexion à Google AI (Flash)...\n> Projet : ${finalName}\n> Génération en cours...\n`;
-        resultArea.style.display = 'none';
-
-        try {
-            let systemPrompt = "";
-            if(currentMode === 'app') systemPrompt = `Tu es un expert dev. Crée le code complet pour une APP nommée "${finalName}".`;
-            else if(currentMode === 'site') systemPrompt = `Tu es un expert web. Crée le code HTML/CSS complet pour un SITE nommé "${finalName}".`;
-            else if(currentMode === 'video') systemPrompt = `Tu es un expert marketing. Crée un script viral pour une VIDÉO nommée "${finalName}".`;
-
-            const fullPrompt = systemPrompt + " Description : " + prompt;
-
-            // CORRECTION ICI : Utilisation de gemini-1.5-flash au lieu de gemini-pro
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: fullPrompt }] }]
-                })
-            });
-
-            const data = await response.json();
-
-            if (data.error) {
-                terminal.innerText = "ERREUR API : " + data.error.message;
-                terminal.style.color = "red";
-            } else {
-                const aiContent = data.candidates[0].content.parts[0].text;
-                terminal.innerText = "";
-                typeWriterEffect(aiContent);
-            }
-
-        } catch (error) {
-            terminal.innerText = "Erreur Réseau : " + error.message;
-            terminal.style.color = "red";
-        }
-    }
-
-    function typeWriterEffect(text) {
-        let i = 0;
-        const speed = 2;
-        function type() {
-            if (i < text.length) {
-                terminal.innerText += text.charAt(i);
-                terminal.scrollTop = terminal.scrollHeight;
-                i++;
-                setTimeout(type, speed);
-            } else {
-                resultArea.style.display = 'block';
-            }
-        }
-        type();
-    }
-
-    function copyCode() {
-        const text = terminal.innerText;
-        if(text && !text.includes("ERREUR")) {
-            navigator.clipboard.writeText(text).then(() => showToast("Code copié !"));
-        }
-    }
-
-    function closeModal() { document.getElementById('subscription-modal').classList.remove('active'); }
-    function showToast(msg) {
-        const t = document.getElementById('toast');
-        t.innerText = msg; t.style.display = 'block';
-        setTimeout(() => t.style.display = 'none', 3000);
-    }ton class="btn-copy" onclick="copyCode()">
+                <h3 style="color:var(--primary); margin-bottom:10px;">Code Prêt !</h3>
+                <button class="btn-copy" onclick="copyCode()">
                     <i class="fas fa-copy"></i> COPIER LE CODE
                 </button>
             </div>
         </main>
     </div>
 
-    <!-- Modal Abonnement -->
+    <!-- Modal -->
     <div id="subscription-modal" class="modal-overlay">
         <div class="modal-content">
             <h2 style="color:white;">Version Gratuite</h2>
             <p style="color:#aaa; margin:10px 0;">Code généré avec succès.</p>
-            <p style="color:var(--primary);">Pour le ZIP complet, passez PRO.</p>
             <button class="pay-btn" onclick="closeModal()">OK</button>
         </div>
     </div>
 
+    <!-- JAVASCRIPT CORRIGÉ ET COMPLET -->
     <script>
-        
+        // Variables globales
+        let currentMode = 'app';
+        const terminal = document.getElementById('terminal');
+        const resultArea = document.getElementById('result-area');
+
+        // 1. Fonction pour changer les onglets
+        function setMode(mode) {
+            currentMode = mode;
+            // Enlever la classe 'active' de tous les boutons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            // Ajouter la classe 'active' au bouton cliqué
+            event.currentTarget.classList.add('active');
+            
+            // Cacher les résultats précédents
+            resultArea.style.display = 'none';
+            terminal.style.display = 'none';
+            terminal.innerHTML = '';
+        }
+
+        // 2. Fonction PRINCIPALE de génération
+        async function startRealGeneration() {
+            // Récupération des valeurs
+            const apiKey = document.getElementById('api-key-input').value;
+            const projectName = document.getElementById('project-name').value;
+            const prompt = document.getElementById('prompt-input').value;
+
+            // Vérifications
+            if (!apiKey) { 
+                showToast("ERREUR : Il manque la clé API Google !"); 
+                return; 
+            }
+            if (!prompt) { 
+                showToast("ERREUR : Décrivez votre projet."); 
+                return; 
+            }
+            
+            const finalName = projectName || "MonProjet";
+
+            // Préparation de l'interface
+            terminal.style.display = 'block';
+            terminal.style.color = 'var(--success)';
+            terminal.innerText = `> Connexion à Google AI (Flash)...\n> Projet : ${finalName}\n> Génération en cours...\n`;
+            resultArea.style.display = 'none';
+
+            try {
+                // Construction du prompt
+                let systemPrompt = "";
+                if(currentMode === 'app') systemPrompt = `Tu es un expert dev. Crée le code complet pour une APP nommée "${finalName}".`;
+                else if(currentMode === 'site') systemPrompt = `Tu es un expert web. Crée le code HTML/CSS complet pour un SITE nommée "${finalName}".`;
+                else if(currentMode === 'video') systemPrompt = `Tu es un expert marketing. Crée un script viral pour une VIDÉO nommée "${finalName}".`;
+
+                const fullPrompt = systemPrompt + " Description : " + prompt;
+
+                // --- CORRECTION ICI : Utilisation de gemini-1.5-flash ---
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: fullPrompt }] }]
+                    })
+                });
+
+                const data = await response.json();
+
+                // Gestion des erreurs API
+                if (data.error) {
+                    terminal.innerText = "ERREUR API : " + data.error.message;
+                    terminal.style.color = "red";
+                } else {
+                    // Succès : on récupère le texte
+                    const aiContent = data.candidates[0].content.parts[0].text;
+                    terminal.innerText = "";
+                    typeWriterEffect(aiContent);
+                }
+
+            } catch (error) {
+                terminal.innerText = "ERREUR RÉSEAU : " + error.message;
+                terminal.style.color = "red";
+            }
+        }
+
+        // 3. Effet d'écriture automatique
+        function typeWriterEffect(text) {
+            let i = 0;
+            const speed = 2;
+            function type() {
+                if (i < text.length) {
+                    terminal.innerText += text.charAt(i);
+                    terminal.scrollTop = terminal.scrollHeight; // Descendre automatiquement
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    resultArea.style.display = 'block'; // Afficher le bouton copier à la fin
+                }
+            }
+            type();
+        }
+
+        // 4. Copier le code
+        function copyCode() {
+            const text = terminal.innerText;
+            if(text && !text.includes("ERREUR")) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast("Code copié dans le presse-papier !");
+                });
+            } else {
+                showToast("Rien à copier.");
+            }
+        }
+
+        // 5. Gestion de la fenêtre (Modal)
+        function closeModal() { 
+            document.getElementById('subscription-modal').classList.remove('active'); 
+        }
+
+        // 6. Affichage des petits messages (Toast)
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = msg; 
+            t.style.display = 'block';
+            setTimeout(() => t.style.display = 'none', 3000);
+        }
     </script>
 </body>
 </html>
-
